@@ -23,3 +23,23 @@ usuario.addEventListener("input", function () {
 
     this.value = valor.replace(/[^a-zA-Z]/g, '');
 });
+
+// agregado: validación mínima para contraseña (10+ caracteres)
+let password = document.getElementById("password");
+password && password.addEventListener("input", function () {
+    let fb = this.nextElementSibling;
+    if (!fb || fb.id === 'mensaje') {
+        fb = document.createElement('span');
+        fb.className = 'form-text';
+        this.parentNode.insertBefore(fb, this.nextSibling);
+    }
+    if (this.value.length >= 10) {
+        this.style.border = '2px solid green';
+        fb.textContent = 'Contraseña válida';
+        fb.style.color = 'green';
+    } else {
+        this.style.border = '2px solid red';
+        fb.textContent = 'La contraseña debe tener al menos 10 caracteres';
+        fb.style.color = 'red';
+    }
+});
